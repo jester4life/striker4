@@ -8,6 +8,32 @@
     <link rel="stylesheet" href="thirdPage.css" />
 </head>
 <body>
+
+    <!-- Hidden Audio Element -->
+    <audio id="backgroundAudio" loop autoplay hidden>
+        <source src="/fin/Pages/Assets/gui1.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <script>
+        // Ensure audio plays seamlessly
+        document.addEventListener('DOMContentLoaded', function() {
+            var audio = document.getElementById('backgroundAudio');
+            audio.play().catch(function(error) {
+                console.log("Autoplay was prevented. Please interact with the page to play audio.");
+            });
+
+            // Optional: Add a small delay to ensure seamless looping
+            audio.addEventListener('timeupdate', function() {
+                if (audio.currentTime > audio.duration - 0.1) { // Adjust the threshold as needed
+                    audio.currentTime = 0;
+                    audio.play();
+                }
+            });
+        });
+    </script>
+
+    
     <div class="containter">
         <div class="center">
             <button id="disable" class="btn" disabled >
